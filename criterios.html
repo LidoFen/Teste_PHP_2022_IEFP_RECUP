@@ -1,0 +1,184 @@
+<!-- TEMPLATE HTML  |  PAGINA 1.HTML-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste 5417 - 2023</title>
+    <script src="assets/js/lib/jquery.js"></script>
+    <script src="assets/js/lib/bootstrap.js"></script>
+    <script src="assets/js/lib/datatables.js"></script>
+    <script src="assets/js/lib/select2.js"></script>
+    <script src="assets/js/lib/sweetalert.js"></script>
+    <script src="assets/js/prova.js"></script>
+    <script src="assets/js/criterio.js"></script>
+
+    <link rel="stylesheet" href="assets/css/lib/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/lib/datatables.css">
+    <link rel="stylesheet" href="assets/css/lib/select2.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    
+</head>
+<body>
+  
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Teste 5417 - 2023</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="provas.html">Provas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#" aria-current="page">Critérios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="concorrentes.html">Concorrentes</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- REGISTO DA PÁGINA 2 -->
+
+<div class="container">
+  <div class="card text-bg-light mt-5">
+    <div class="card-header text-center">
+      Registo de Critérios
+    </div>
+    <div class="card-body text-center">
+      <h5>Registe aqui os critérios</h5>
+      <hr>
+      <form class="">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-2 text-center">
+            <label for="descricaoCriterio" class="form-label">Descricao</label>
+            <input type="text" class="form-control" id="descricaoCriterio">
+          </div>
+          <div class="col-md-2 text-center">
+            <label for="pontuacaoMinCriterio" class="form-label">Pontuação Mínima</label>
+            <input type="number" class="form-control" id="pontuacaoMinCriterio">
+          </div>
+          <div class="col-md-2 text-center">
+            <label for="pontuacaoMaxCriterio" class="form-label">Pontuação Máxima</label>
+            <input type="number" class="form-control" id="pontuacaoMaxCriterio">
+          </div>
+          <div class="col-md-3 text-center">
+            <label for="provaCriterio" class="form-label">Prova</label>
+            <select class="form-select" id="provaCriterio">
+
+            </select>  
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center mt-3 mb-3">
+              <button type="button" class="btn btn-primary" onclick="registaCriterio()">Registar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> 
+</div>
+
+
+
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header text-center">
+      Listagem Critérios
+    </div>
+    <div class="card-body text-center">
+      <h5>Listagem de todos os critérios</h5>
+      <hr>
+      <div class="table-responsive">
+        <table id="tabelaCriterios" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Prova</th>
+              <th>Descrição</th>
+              <th>Pontuação Min.</th>
+              <th>Pontuação Máx.</th>
+              <th>Editar</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody id="corpoTabelaCriterios">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL DA PÁGINA 1 -->
+
+<div class="modal fade" id="modalCriterio" tabindex="-1" aria-labelledby="modalCriterioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalCriterioLabel">Edição de Criterio</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-body">
+              <form class="">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-2 text-center">
+                    <label for="idCriterioEdit" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="idCriterioEdit" disabled>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <label for="descricaoCriterioEdit" class="form-label">Descricao</label>
+                    <input type="text" class="form-control" id="descricaoCriterioEdit">
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <label for="pontuacaoMinCriterioEdit" class="form-label">Pontuação Mínima</label>
+                    <input type="number" class="form-control" id="pontuacaoMinCriterioEdit">
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <label for="pontuacaoMaxCriterioEdit" class="form-label">Pontuação Máxima</label>
+                    <input type="number" class="form-control" id="pontuacaoMaxCriterioEdit">
+                  </div>
+                  <div class="col-md-3 text-center">
+                    <label for="provaCriterioEdit" class="form-label">Prova</label>
+                    <select class="form-select" id="provaCriterioEdit">
+        
+                    </select>  
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-success" id="btnGuardar1">Guardar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+</body>
+</html>
